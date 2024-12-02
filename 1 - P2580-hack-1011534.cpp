@@ -61,6 +61,15 @@ namespace functions {
 //    }
     bool cmp2 ( tname const &val_searching, classmates const &element ) {
         return val_searching.hash1 <= element.hash1;
+        /*
+         * true即此时二分的元素的哈希值不小于目标值
+         * false即此时二分位置哈希值小于目标值
+         * 最终二分到的是不小于目标值的最小值
+         * 即若此值大于目标值, 数组中不存在目标值
+         * 若此值等于目标值, 数组中存在该值
+         * 似乎不太可能会返回end啊
+         * 加个特判吧
+         */
     }
 } using namespace functions;
 
@@ -69,6 +78,7 @@ int main() {
     for ( int i = 1; i <= n; i++ ) {
         scanf ( "%s", cm[i].name );
         cm[i].hash1 = dealhash ( cm[i].name );
+//        cout << cm[i].hash1 << endl;
     }
     sort ( cm + 1, cm + 1 + n, cmp1 );
     int m;
@@ -76,9 +86,10 @@ int main() {
     for ( int i = 1; i <= m; i++ ) {
         scanf ( "%s", coach.name );
         coach.hash1 = dealhash ( coach.name );
-        int pot = upper_bound ( cm + 1, cm + 1 + n, coach, cmp2 ) - cm;   // pot是在cm中的索引
-        cout << pot << endl;
-        if ( pot == n + 1 ) {               // 没找到函数返回第二个参数值, 减了cm就变成n+1
+//        cout << coach.hash1 << endl;
+        int pot = upper_bound ( cm + 1, cm + 1 + n, coach, cmp2 ) - cm;   // ---- pot是在cm中的索引 ----
+//        cout << pot << endl;                                           // ---------------------------
+        if ( pot == n + 1 && cm[pot].hash1 != coach.hash1 ) {           // --------- 没找到 ----------
             printf ( "WRONG\n" );
         } else {
             if ( pd[pot] == 0 ) {
@@ -93,4 +104,3 @@ int main() {
         coach = tname();           // 初始化构造函数
     }
 }
-
