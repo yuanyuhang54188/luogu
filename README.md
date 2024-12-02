@@ -2,7 +2,7 @@
 
 主要是为了让大家有一个更好的环境。
 
-                                                                                                    -- 来自 niuqichongtian
+\                                                                                                    -- 来自 niuqichongtian
 
 English version:
 
@@ -10,4 +10,4 @@ This GitHub repository is only used by OIers as needed, and outsiders can downlo
 
 Mainly to provide everyone with a better environment.
 
-                                                                                                    -- From niuqichongtian
+\                                                                                                    -- From niuqichongtian
