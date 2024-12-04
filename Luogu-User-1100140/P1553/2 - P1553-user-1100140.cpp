@@ -42,7 +42,7 @@ int main() {
     if(!flag) {
         bool flag2 = true;
         for(int i = strlen(a)-1; i >= 0; i--) {
-            if(flag2 && a[i] == '0') continue;
+            if(i != 0 && flag2 && a[i] == '0') continue;
             else if(a[i]!='0' && flag2) flag2 = false;
             printf("%c", a[i]);
         }
@@ -59,12 +59,13 @@ int main() {
             printf("%c", b[i]);
         }
         printf("%c", b[len]);
-        if (b[len] =='.') {                         // 特殊处理, 删掉的是后缀0, 不是前缀0
+        if (b[len] == '.') {                         // 特殊处理, 删掉的是后缀0, 不是前缀0
             c[strlen(b)] = false;
             for (int i = strlen(b) - 1; i > len; i--) {
                 if (b[i] == '0') c[i] = c[i + 1];
                 else c[i] = true;
             }
+            c[len + 1] = true;
             for (int i = len+1; i < strlen(b); i++) {
                 if (c[i]) printf("%c", b[i]);
             }
